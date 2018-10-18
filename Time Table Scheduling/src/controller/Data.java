@@ -110,9 +110,17 @@ public class Data {
         return this;
     }
     
-    public ArrayList<Room> getRoom(){ return rooms; }
-    public ArrayList<Subject> getSubject(){ return subjects; }
-    public ArrayList<Teacher> getTeacher(){ return teachers; }
-    public ArrayList<Course> getCourse(){ return courses; }
+    private Teacher temporary;
+    public Teacher getTeacherById(String id){
+        teachers.forEach(teacher -> {
+            if(teacher.getID().equalsIgnoreCase(id))
+                temporary = teacher;
+        });
+        return temporary;
+    }
+    public ArrayList<Room> getRooms(){ return rooms; }
+    public ArrayList<Subject> getSubjects(){ return subjects; }
+    public ArrayList<Teacher> getTeachers(){ return teachers; }
+    public ArrayList<Course> getCourses(){ return courses; }
     public int getNumberOfClasses(){ return numberOfClasses; }
 }
