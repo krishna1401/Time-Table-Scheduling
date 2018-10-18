@@ -16,11 +16,11 @@ public class TimeTable {
     public TimeTable(String id,Course course){
         this.id = id;
         this.course = course;
+        classes = new ArrayList<>();
     }
     
     public String getId(){ return id; }
     public Course getCourse(){ return course; }
     public ArrayList<Class> getClasses(){ return classes; }
-    
     public void addClass(Class addClass){ classes.add(addClass); }
 }

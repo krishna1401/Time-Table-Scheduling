@@ -60,9 +60,12 @@ public class Data {
         Subject subject4 = new Subject("MCS-104","Database System & Implementation",teacher7,7);
         Subject subject5 = new Subject("MCS-105","Computational Intelligence",teacher1,11);
         
-        Subject subject6 = new Subject("MCS-301","Elective 1",teacher8,6);
-        Subject subject7 = new Subject("MCS-302","Elective 2",teacher13,6);
-        Subject subject8 = new Subject("MCS-303","Elective 3",teacher15,6);
+        Subject subject6 = new Subject("MCS-302","Design Image Processing & Multi-media",teacher8,7);
+        Subject subject7 = new Subject("MCS-303","Neural Network",teacher13,6);
+        Subject subject8 = new Subject("MCS-304","Software Quality Assurance & Testing",teacher15,5);
+        Subject subject25 = new Subject("MCS-311","Special Topic in Data Mining",teacher17,5);
+        Subject subject26 = new Subject("MCS-312","Special Topic in Theoritical Computer Science",teacher12,2);
+        Subject subject27 = new Subject("MCS-316","Special Topic in Artificial Intelligence",teacher16,5);
         
         Subject subject9 = new Subject("MCA-101","Objective Orientec Programming",teacher1,8);
         Subject subject10 = new Subject("MCA-102","Systems Programming",teacher2,7);
@@ -93,7 +96,7 @@ public class Data {
                                     new ArrayList<>(Arrays.asList(subject1,subject2,subject3,subject4,subject5)),
                                     40);
         Course course2 = new Course("MSC-2","M.Sc. 2nd Year",
-                                    new ArrayList<>(Arrays.asList(subject6,subject7,subject8)),
+                                    new ArrayList<>(Arrays.asList(subject6,subject7,subject8,subject25,subject26,subject27)),
                                     25);
         Course course3 = new Course("MCA-1","MCA 1st Year",
                                     new ArrayList<>(Arrays.asList(subject9,subject10,subject11,subject12,subject13,subject14)),

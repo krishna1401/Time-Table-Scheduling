@@ -16,11 +16,12 @@ public class Schedule {
     
     public Schedule(Data data){
        this.data = data;
-       for(int i = 0;i < timetable.size();i++){
+       timetable = new ArrayList<>();
+       classes = new ArrayList<>();
+       for(int i = 0;i < data.getNumberOfCourse();i++){
             TimeTable temp = new TimeTable("" + i, data.getCourses().get(i));
             timetable.add(temp);
         }
-       constraintSatisfaction();
     }
     public Data getData(){ return data; }
     
@@ -28,8 +29,8 @@ public class Schedule {
     private Room availableRoom;
     private void constraintSatisfaction(){
         data.getTimeSlots().forEach(time -> {
-            rooms = data.getRooms();
-            teachers = data.getTeachers();
+            rooms = (ArrayList<Room>) data.getRooms().clone();
+            teachers = (ArrayList<Teacher>) data.getTeachers().clone();
             for(int course_index = 0;course_index < data.getCourses().size();course_index++){
                 Course course = data.getCourses().get(course_index);
                 Class assignedClass = new Class(course.getId()+";"+time.getId(),course,time);
@@ -46,6 +47,7 @@ public class Schedule {
                     assignedClass.setTeacher(availableSubject.getTeacher());
                 }else{ assignedClass.setNoClass(); }
                 classes.add(assignedClass);
+                System.out.println(assignedClass.toString());
                 timetable.get(course_index).addClass(assignedClass);
             }
         });
@@ -55,20 +57,19 @@ public class Schedule {
     private Room roomAvailability(Course course){
         Room available = null;
         for(int i = 0;i < rooms.size();i++){
-            if(rooms.get(i).getCapacity() > course.getMaxNumOfStudents()){
+            if(rooms.get(i).getCapacity() >= course.getMaxNumOfStudents()){
                 available = rooms.get(i);
                 break;
             }
         }
-        return null;
+        return available;
     }
-    
     
     private Subject subjectAvailablity(Course course){
         Subject available = null;
         for(int i = 0;i < course.getSubjects().size();i++){
             if(course.getSubjects().get(i).getTimeDuration() > 0){
-                if(!teacherAvailability(available)){ continue; }
+                if(!teacherAvailability(course.getSubjects().get(i))){ continue; }
                 available = course.getSubjects().get(i);
                 break;
             }
@@ -82,13 +83,15 @@ public class Schedule {
     }
     
     private int total_time = 0;
-    public boolean validateAvailability(){
+    public boolean getSchedule(){
         boolean condition = true;
         data.getSubjects().forEach(subject -> {
             total_time += subject.getTimeDuration();
         });
         if(total_time > 40*data.getRooms().size())
             condition = false;
+        if(condition)
+            constraintSatisfaction();
         return condition;
     }
     

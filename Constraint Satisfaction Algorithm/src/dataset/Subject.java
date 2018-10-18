@@ -24,7 +24,7 @@ public class Subject {
     public String getName(){ return name; }
     public Teacher getTeacher(){ return teacher; }
     public int getTimeDuration(){ return timeDuration; }
-    public void decrementTimeDuration(){ timeDuration -= timeDuration; }
+    public void decrementTimeDuration(){ timeDuration -= 1; }
     
     @Override
     public String toString(){ return name; }

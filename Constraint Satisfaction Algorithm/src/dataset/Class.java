@@ -41,6 +41,12 @@ public class Class {
     public TimeSlot getTimeSlot(){ return time; }
     @Override
     public String toString(){
-        return "["+course.getName()+","+subject.getName()+","+room.getId()+","+teacher.getName()+","+time.toString()+"]";
+        String message;
+        if(subject == null){
+            message = "["+time.toString()+","+course.getName()+",NULL, NULL, NULL]";
+        }else{
+            message = "["+time.toString()+","+course.getName()+","+subject.getName()+","+room.getId()+","+teacher.getName()+"]";
+        }
+        return message;
     }
 }
