@@ -5,7 +5,7 @@
 | ---- | --------- | --------- | --- |
 |  1.  | 	id     |  String   | Unique Time Table Identification |
 |  2.  |   course  |  Course   | Course for the Time Table |
-|  3.  |   classes |   Class   | *Array List* of Class in the Time Table |
+|  3.  |   classes | ArrayList<Class> | *Array List* of Class in the Time Table |
 
 ## Getter Functions
 1. **getId()**: Returns Id of the Time Table

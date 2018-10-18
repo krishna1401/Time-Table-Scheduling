@@ -5,7 +5,7 @@
 | ---- | --------- | --------- | --- |
 |  1.  |     id    |   String  | Unique Course Identification |
 |  2.  |    name   |   String  | Full Name of the Course |
-|  3.  |  subjects |  Subject  | *Array List* of Subjects taught in a particular Course |
+|  3.  |  subjects | ArrayList<Subject> | *Array List* of Subjects taught in a particular Course |
 |  4.  |  maxNumofStudents | int | Maximum Strength of Students in the Course |  
 
 ## Getter Functions

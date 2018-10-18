@@ -24,7 +24,6 @@ public class Schedule {
             timetable.add(temp);
         }
     }
-    public Data getData(){ return data; }
     
     private Subject availableSubject;
     private Room availableRoom;

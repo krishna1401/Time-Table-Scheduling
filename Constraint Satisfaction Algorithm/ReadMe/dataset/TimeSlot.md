@@ -5,7 +5,7 @@
 | ---- | --------- | --------- | --- |
 |  1.  |  	 id    |  String   | Unique Time Slot Identification |
 |  2.  |    time   |  String   | Time in the Time Slot *(9:00 AM - 10:00 AM)* |
-|  3.  |     day   |  String   | Day(in week) of the Time Slot |
+|  3.  |     day   |  String   | Day*(in week)* of the Time Slot |
 
 ## Getter Functions
 1. **getId()**: Returns Id of the Time Slot
