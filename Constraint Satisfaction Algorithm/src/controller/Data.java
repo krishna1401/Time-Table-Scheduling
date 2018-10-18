@@ -4,6 +4,7 @@
  * 2. Courses
  * 3. Teachers
  * 4. Subject
+ * 5. Time Slot
  */
 package controller;
 
@@ -16,7 +17,8 @@ public class Data {
     private ArrayList<Subject> subjects;
     private ArrayList<Teacher> teachers;
     private ArrayList<Course> courses;
-    private int numberOfClasses = 0;
+    private ArrayList<TimeSlot> time_slots;
+    private int numberOfCourse = 0;
     
     public Data(){ initialize(); }
     
@@ -52,34 +54,34 @@ public class Data {
                                                  teacher13,teacher14,teacher15,teacher16,teacher17));
         
         //Initializing Subjects
-        Subject subject1 = new Subject("MCS-101","Design & Analysis of Algorithms","NG",7);
-        Subject subject2 = new Subject("MCS-102","Artificial Intelligence","PB",3);
-        Subject subject3 = new Subject("MCS-103","Information Security","RG",6);
-        Subject subject4 = new Subject("MCS-104","Database System & Implementation","RK",7);
-        Subject subject5 = new Subject("MCS-105","Computational Intelligence","NK",11);
+        Subject subject1 = new Subject("MCS-101","Design & Analysis of Algorithms",teacher12,7);
+        Subject subject2 = new Subject("MCS-102","Artificial Intelligence",teacher13,3);
+        Subject subject3 = new Subject("MCS-103","Information Security",teacher14,6);
+        Subject subject4 = new Subject("MCS-104","Database System & Implementation",teacher7,7);
+        Subject subject5 = new Subject("MCS-105","Computational Intelligence",teacher1,11);
         
-        Subject subject6 = new Subject("MCS-301","Elective 1","RC",6);
-        Subject subject7 = new Subject("MCS-302","Elective 2","PB",6);
-        Subject subject8 = new Subject("MCS-303","Elective 3","MS",6);
+        Subject subject6 = new Subject("MCS-301","Elective 1",teacher8,6);
+        Subject subject7 = new Subject("MCS-302","Elective 2",teacher13,6);
+        Subject subject8 = new Subject("MCS-303","Elective 3",teacher15,6);
         
-        Subject subject9 = new Subject("MCA-101","Objective Orientec Programming","NK",8);
-        Subject subject10 = new Subject("MCA-102","Systems Programming","SV",7);
-        Subject subject11 = new Subject("MCA-103","Statistical Techniques","PR",7);
-        Subject subject12 = new Subject("MCA-104","Computer System Architecture","NS",7);
-        Subject subject13 = new Subject("MCA-105","Economics","DK",5);
-        Subject subject14 = new Subject("MCA-106","Technical Communication","SP",4);
+        Subject subject9 = new Subject("MCA-101","Objective Orientec Programming",teacher1,8);
+        Subject subject10 = new Subject("MCA-102","Systems Programming",teacher2,7);
+        Subject subject11 = new Subject("MCA-103","Statistical Techniques",teacher3,7);
+        Subject subject12 = new Subject("MCA-104","Computer System Architecture",teacher4,7);
+        Subject subject13 = new Subject("MCA-105","Economics",teacher5,5);
+        Subject subject14 = new Subject("MCA-106","Technical Communication",teacher6,4);
         
-        Subject subject15 = new Subject("MCA-301","Design & Analysis of Algorithms","RK",5);
-        Subject subject16 = new Subject("MCA-302","Software Engineering","RC",6);
-        Subject subject17 = new Subject("MCA-303","Database Systems","NS",6);
-        Subject subject18 = new Subject("MCA-304","Automata Theory","MK",7);
-        Subject subject19 = new Subject("MCA-305","Operating Systems","PKH",5);
+        Subject subject15 = new Subject("MCA-301","Design & Analysis of Algorithms",teacher7,5);
+        Subject subject16 = new Subject("MCA-302","Software Engineering",teacher8,6);
+        Subject subject17 = new Subject("MCA-303","Database Systems",teacher4,6);
+        Subject subject18 = new Subject("MCA-304","Automata Theory",teacher9,7);
+        Subject subject19 = new Subject("MCA-305","Operating Systems",teacher10,5);
         
-        Subject subject20 = new Subject("MCA-501","Data Mining","SV",6);
-        Subject subject21 = new Subject("MCA-505","Artificial Intelligence","PR",6);
-        Subject subject22 = new Subject("MCA-506","Digital Image Processing","MK",7);
-        Subject subject23 = new Subject("MCA-509","Software Quality Assurance & Testing","VBS",5);
-        Subject subject24 = new Subject("MCA-517","Satellite & Mobile Communication Network","PKH",6);
+        Subject subject20 = new Subject("MCA-501","Data Mining",teacher2,6);
+        Subject subject21 = new Subject("MCA-505","Artificial Intelligence",teacher3,6);
+        Subject subject22 = new Subject("MCA-506","Digital Image Processing",teacher9,7);
+        Subject subject23 = new Subject("MCA-509","Software Quality Assurance & Testing",teacher11,5);
+        Subject subject24 = new Subject("MCA-517","Satellite & Mobile Communication Network",teacher10,6);
         
         subjects = new ArrayList<>(Arrays.asList(subject1,subject2,subject3,subject4,subject5,subject6,
                                                  subject7,subject8,subject9,subject10,subject11,subject12,
@@ -105,22 +107,64 @@ public class Data {
         
         courses = new ArrayList<>(Arrays.asList(course1,course2,course3,course4,course5));
         
-        numberOfClasses = courses.size();
+        TimeSlot time1 = new TimeSlot("Mo1","9:00 AM - 10:00 AM","Monday");
+        TimeSlot time2 = new TimeSlot("Tu1","9:00 AM - 10:00 AM","Tuesday");
+        TimeSlot time3 = new TimeSlot("We1","9:00 AM - 10:00 AM","Wednesday");
+        TimeSlot time4 = new TimeSlot("Th1","9:00 AM - 10:00 AM","Thrusday");
+        TimeSlot time5 = new TimeSlot("Fr1","9:00 AM - 10:00 AM","Friday");
+        time_slots = new ArrayList<>(Arrays.asList(time1,time2,time3,time4,time5));
+        time1 = new TimeSlot("Mo2","10:00 AM - 11:00 AM","Monday");
+        time2 = new TimeSlot("Tu2","10:00 AM - 11:00 AM","Tuesday");
+        time3 = new TimeSlot("We2","10:00 AM - 11:00 AM","Wednesday");
+        time4 = new TimeSlot("Th2","10:00 AM - 11:00 AM","Thrusday");
+        time5 = new TimeSlot("Fr2","10:00 AM - 11:00 AM","Friday");
+        time_slots.addAll(Arrays.asList(time1,time2,time3,time4,time5));
+        time1 = new TimeSlot("Mo3","11:00 AM - 12:00 PM","Monday");
+        time2 = new TimeSlot("Tu3","11:00 AM - 12:00 PM","Tuesday");
+        time3 = new TimeSlot("We3","11:00 AM - 12:00 PM","Wednesday");
+        time4 = new TimeSlot("Th3","11:00 AM - 12:00 PM","Thrusday");
+        time5 = new TimeSlot("Fr3","11:00 AM - 12:00 PM","Friday");
+        time_slots.addAll(Arrays.asList(time1,time2,time3,time4,time5));
+        time1 = new TimeSlot("Mo4","12:00 PM - 1:00 PM","Monday");
+        time2 = new TimeSlot("Tu4","12:00 PM - 1:00 PM","Tuesday");
+        time3 = new TimeSlot("We4","12:00 PM - 1:00 PM","Wednesday");
+        time4 = new TimeSlot("Th4","12:00 PM - 1:00 PM","Thrusday");
+        time5 = new TimeSlot("Fr4","12:00 PM - 1:00 PM","Friday");
+        time_slots.addAll(Arrays.asList(time1,time2,time3,time4,time5));
+        time1 = new TimeSlot("Mo5","1:00 PM - 2:00 PM","Monday");
+        time2 = new TimeSlot("Tu5","1:00 PM - 2:00 PM","Tuesday");
+        time3 = new TimeSlot("We5","1:00 PM - 2:00 PM","Wednesday");
+        time4 = new TimeSlot("Th5","1:00 PM - 2:00 PM","Thrusday");
+        time5 = new TimeSlot("Fr5","1:00 PM - 2:00 PM","Friday");
+        time_slots.addAll(Arrays.asList(time1,time2,time3,time4,time5));
+        time1 = new TimeSlot("Mo6","2:00 PM - 3:00 PM","Monday");
+        time2 = new TimeSlot("Tu6","2:00 PM - 3:00 PM","Tuesday");
+        time3 = new TimeSlot("We6","2:00 PM - 3:00 PM","Wednesday");
+        time4 = new TimeSlot("Th6","2:00 PM - 3:00 PM","Thrusday");
+        time5 = new TimeSlot("Fr6","2:00 PM - 3:00 PM","Friday");
+        time_slots.addAll(Arrays.asList(time1,time2,time3,time4,time5));
+        time1 = new TimeSlot("Mo7","3:00 PM - 4:00 PM","Monday");
+        time2 = new TimeSlot("Tu7","3:00 PM - 4:00 PM","Tuesday");
+        time3 = new TimeSlot("We7","3:00 PM - 4:00 PM","Wednesday");
+        time4 = new TimeSlot("Th7","3:00 PM - 4:00 PM","Thrusday");
+        time5 = new TimeSlot("Fr7","3:00 PM - 4:00 PM","Friday");
+        time_slots.addAll(Arrays.asList(time1,time2,time3,time4,time5));
+        time1 = new TimeSlot("Mo8","4:00 PM - 5:00 PM","Monday");
+        time2 = new TimeSlot("Tu8","4:00 PM - 5:00 PM","Tuesday");
+        time3 = new TimeSlot("We8","4:00 PM - 5:00 PM","Wednesday");
+        time4 = new TimeSlot("Th8","4:00 PM - 5:00 PM","Thrusday");
+        time5 = new TimeSlot("Fr8","4:00 PM - 5:00 PM","Friday");
+        time_slots.addAll(Arrays.asList(time1,time2,time3,time4,time5));
+        
+        numberOfCourse = courses.size();
         
         return this;
     }
     
-    private Teacher temporary;
-    public Teacher getTeacherById(String id){
-        teachers.forEach(teacher -> {
-            if(teacher.getID().equalsIgnoreCase(id))
-                temporary = teacher;
-        });
-        return temporary;
-    }
     public ArrayList<Room> getRooms(){ return rooms; }
     public ArrayList<Subject> getSubjects(){ return subjects; }
     public ArrayList<Teacher> getTeachers(){ return teachers; }
     public ArrayList<Course> getCourses(){ return courses; }
-    public int getNumberOfClasses(){ return numberOfClasses; }
+    public ArrayList<TimeSlot> getTimeSlots(){ return time_slots; }
+    public int getNumberOfCourse(){ return numberOfCourse; }
 }
