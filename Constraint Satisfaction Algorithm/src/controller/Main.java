@@ -2,18 +2,22 @@ package controller;
 
 import dataset.TimeTable;
 import dataset.Class;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
     private Data data;
-    private ArrayList<TimeTable> result;
+    private ArrayList<TimeTable> timetables;
     public static void main(String args[]){
         Main main = new Main();
         main.data = new Data();
-        //main.printAvailableData();
+        main.printAvailableData();
         Schedule schedule = new Schedule(main.data);
         if(schedule.getSchedule()){
-            main.result = schedule.getTimeTable();
+            main.timetables = schedule.getTimeTable();
             ArrayList<Class> classes = schedule.getClasses();
             main.printTimeTable();
         }else{
@@ -21,7 +25,18 @@ public class Main {
         }
     }
     private void printTimeTable(){
-        
+        timetables.forEach(timetable -> {
+            try{
+                FileWriter file = new FileWriter("Time Tables\\" + timetable.getCourse().getName()+".txt");
+                timetable.getClasses().forEach(temp -> {
+                    try {
+                        file.write(temp.toString()+"\n");
+                    }catch(IOException e){ System.out.println(e.getMessage()); }
+                });
+                file.close();
+            }catch(IOException e){ System.out.println(e.getMessage()); }
+        });
+        System.out.println("Time Tables Successfully Exported!!!");
     }
     
     private void printAvailableData(){

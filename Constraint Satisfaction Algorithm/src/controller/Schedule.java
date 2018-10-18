@@ -47,7 +47,7 @@ public class Schedule {
                     assignedClass.setTeacher(availableSubject.getTeacher());
                 }else{ assignedClass.setNoClass(); }
                 classes.add(assignedClass);
-                System.out.println(assignedClass.toString());
+                //System.out.println(assignedClass.toString());
                 timetable.get(course_index).addClass(assignedClass);
             }
         });
