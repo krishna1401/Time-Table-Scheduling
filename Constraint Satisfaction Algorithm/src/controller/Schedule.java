@@ -8,6 +8,7 @@ import dataset.Class;
 import dataset.Room;
 import dataset.Teacher;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Schedule {
     private ArrayList<Class> classes;
@@ -67,6 +68,7 @@ public class Schedule {
     
     private Subject subjectAvailablity(Course course){
         Subject available = null;
+        Collections.shuffle(course.getSubjects());
         for(int i = 0;i < course.getSubjects().size();i++){
             if(course.getSubjects().get(i).getTimeDuration() > 0){
                 if(!teacherAvailability(course.getSubjects().get(i))){ continue; }
