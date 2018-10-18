@@ -17,12 +17,12 @@ public class Main {
         if(schedule.getSchedule()){
             main.timetables = schedule.getTimeTable();
             ArrayList<Class> classes = schedule.getClasses();
-            main.printTimeTable();
+            main.storeTimeTable();
         }else{
             System.out.println("No Schedule Possible");
         }
     }
-    private void printTimeTable(){
+    private void storeTimeTable(){
         timetables.forEach(timetable -> {
             try{
                 FileWriter file = new FileWriter("Time Tables\\" + timetable.getCourse().getName()+".txt");
