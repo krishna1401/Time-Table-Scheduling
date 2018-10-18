@@ -1,6 +1,6 @@
 >This java script provides a Structure to store information about a single class in any of the Time Tables.
 
-## Information
+## Structure Information
 | S.No | Var. Name | Data Type | Use |
 | ---- | --------- | --------- | --- |
 |  1.  | 	id     |  String   | Unique Class Identification |
@@ -19,11 +19,11 @@
 6. **getTimeSlot()**: Returns TimeSlot of the Class
 
 ## Setter Functions
-1. **setSubject()**: Set the Subject to be taught in the Class
-2. **setRoom()**: Set the Room alloted for the Class
-3. **setTeacher()**: Set Teacher Information for the Class
+1. **setSubject(...)**: Set the Subject to be taught in the Class
+2. **setRoom(...)**: Set the Room alloted for the Class
+3. **setTeacher(...)**: Set Teacher Information for the Class
 4. **setNoClass()**: Set empty/null Class (if no class is conducted in given Time Slot)
 
 ## Other Functions
-1. **Class()**: Constructor to set Id, Course & TimeSlot for a Class
+1. **Class(...)**: Constructor to set Id, Course & TimeSlot for a Class
 2. **toString()**: Returns the formatted information as a single String
