@@ -12,7 +12,7 @@ public class Main {
     public static void main(String args[]){
         Main main = new Main();
         main.data = new Data();
-        main.printAvailableData();
+        //main.printAvailableData();
         Schedule schedule = new Schedule(main.data);
         if(schedule.getSchedule()){
             main.timetables = schedule.getTimeTable();
@@ -21,6 +21,7 @@ public class Main {
         }else{
             System.out.println("No Schedule Possible");
         }
+        main.printAvailableData();
     }
     private void storeTimeTable(){
         timetables.forEach(timetable -> {
@@ -51,6 +52,8 @@ public class Main {
         System.out.println("Available Subjects ==>");
         data.getSubjects().forEach(subject -> {System.out.println("Id: "+subject.getId()+", Name: "+subject.getName()+
                                                                   ", Teacher Code: "+subject.getTeacher().getId()+
-                                                                  ", Duration (in hrs): "+subject.getTimeDuration());});
+                                                                  ", Duration (in hrs): "+subject.getLectureTime() +
+                                                                  "|" + subject.getTutorialTime() + "|" + 
+                                                                  subject.getPracticalTime());});
     }
 }

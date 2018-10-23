@@ -12,9 +12,10 @@
 
 ## Other Functions
 1. **Schedule(...)**: Constructor to initialize Time Tables
-2. **roomAvailability(...)**: Returns a Room for a Course at particular Time Slot *(if any)* by Constraint 1
-3. **subjectAvailability(...)**: Returns a Subject to be taught to the Course at particular Time Slot *(if any)* by Constraint 3
-4. **teacherAvailability()**: Validates Constraint 2 for before assigning a Subject
+2. **roomAvailability(...)**: Returns Room for a Course at particular Time Slot *(if any)* by Constraint 1
+3. **getRoomById(...)**: Returns Room instance based on the Id specified *(if any)*
+4. **subjectAvailability(...)**: Returns Subject to be taught to the Course at particular Time Slot *(if any)* by Constraint 3
+5. **teacherAvailability()**: Validates Constraint 2 for before assigning a Subject
 
 ## constraintSatisfaction()
 This function is responsible for creating a schedule for all the courses. The basic Constraint Satisfaction Algorithm is:

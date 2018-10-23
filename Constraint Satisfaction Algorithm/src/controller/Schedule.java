@@ -1,4 +1,3 @@
-
 package controller;
 
 import dataset.Course;
@@ -39,7 +38,17 @@ public class Schedule {
                 if(availableRoom != null && availableSubject != null){
                     //Remove Elements for Availability
                     rooms.remove(availableRoom);
-                    availableSubject.decrementTimeDuration();
+                    switch (type) {
+                        case 2:
+                            availableSubject.decrementPracticalTime();
+                            break;
+                        case 1:
+                            availableSubject.decrementTutorialTime(); 
+                            break;
+                        default:
+                            availableSubject.decrementLectureTime();
+                            break;
+                    }
                     teachers.remove(availableSubject.getTeacher());
                     //Assign Class in the Time Table
                     assignedClass.setRoom(availableRoom);
@@ -56,24 +65,81 @@ public class Schedule {
     private ArrayList<Room> rooms;
     private Room roomAvailability(Course course){
         Room available = null;
-        for(int i = 0;i < rooms.size();i++){
-            if(rooms.get(i).getCapacity() >= course.getMaxNumOfStudents()){
-                available = rooms.get(i);
-                break;
+        if(course.getId().equals("MSC-1")){
+            available = getRoomById("SH1");
+        }else if(course.getId().equals("MCA-1")){
+            available = getRoomById("R114");
+        }else{
+            for(int i = 0;i < rooms.size();i++){
+                if(type == 2){
+                    //Assigning Lab for Lab Subjects
+                    if(rooms.get(i).getId().contains("LAB")){
+                        available = rooms.get(i);
+                        break;
+                    }
+                }else{
+                    //Assigning Room for Lectures
+                    if(rooms.get(i).getCapacity() >= course.getMaxNumOfStudents()){
+                        available = rooms.get(i);
+                        break;
+                    }
+                }
             }
         }
         return available;
     }
+    public Room getRoomById(String id){
+        Room temporary = null;
+        for(int i = 0;i < rooms.size();i++){
+            if(rooms.get(i).getId().contains(id)){
+                temporary = rooms.get(i);
+                break;
+            }
+        }
+        return temporary;
+    }
     
+    private int type;
     private Subject subjectAvailablity(Course course){
         Subject available = null;
         Collections.shuffle(course.getSubjects());
+        outer:
         for(int i = 0;i < course.getSubjects().size();i++){
-            if(course.getSubjects().get(i).getTimeDuration() > 0){
-                if(!teacherAvailability(course.getSubjects().get(i))){ continue; }
-                available = course.getSubjects().get(i);
-                break;
+            boolean loop_condition = true;
+            type = 0;
+            //Considers any of the possible Lecture/Tutorial/Lab at given time slot
+            while(loop_condition){
+                switch(type){
+                    case 0: if(course.getSubjects().get(i).getLectureTime() > 0){
+                                //Finding Lecture for Room
+                                if(!teacherAvailability(course.getSubjects().get(i))){ continue outer; }
+                                if(roomAvailability(course) == null){ type = 2; continue; }
+                                available = course.getSubjects().get(i);
+                                loop_condition = false;
+                            }else{ type = 1; }
+                            break;
+                    case 1: if(course.getSubjects().get(i).getTutorialTime() > 0){
+                                //Finding Lecture for Tutorial
+                                if(!teacherAvailability(course.getSubjects().get(i))){ continue outer; }
+                                if(roomAvailability(course) == null){ type = 2;continue; }
+                                available = course.getSubjects().get(i);
+                                loop_condition = false;
+                            }else{ type = 2; }
+                            break;
+                    case 2: if(course.getSubjects().get(i).getPracticalTime() > 0){
+                                //Finding Lecture for Practical
+                                if(!teacherAvailability(course.getSubjects().get(i))){ continue outer; }
+                                if(roomAvailability(course) == null){ type = -1; continue; }
+                                available = course.getSubjects().get(i);
+                                loop_condition = false;
+                            }else{ type = -1; }
+                            break;
+                    default:
+                            continue outer;
+                }
             }
+            if(!loop_condition)
+                break;
         }
         return available;
     }
@@ -87,7 +153,7 @@ public class Schedule {
     public boolean getSchedule(){
         boolean condition = true;
         data.getSubjects().forEach(subject -> {
-            total_time += subject.getTimeDuration();
+            total_time += subject.getLectureTime();
         });
         if(total_time > 40*data.getRooms().size())
             condition = false;
