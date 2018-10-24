@@ -6,6 +6,7 @@ import dataset.TimeTable;
 import dataset.Class;
 import dataset.Room;
 import dataset.Teacher;
+import dataset.TimeSlot;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -33,7 +34,7 @@ public class Schedule {
             for(int course_index = 0;course_index < data.getCourses().size();course_index++){
                 Course course = data.getCourses().get(course_index);
                 Class assignedClass = new Class(course.getId()+";"+time.getId(),course,time);
-                availableSubject = subjectAvailablity(course);
+                availableSubject = subjectAvailablity(course,time);
                 availableRoom = roomAvailability(course);
                 if(availableRoom != null && availableSubject != null){
                     //Remove Elements for Availability
@@ -100,7 +101,7 @@ public class Schedule {
     }
     
     private int type;
-    private Subject subjectAvailablity(Course course){
+    private Subject subjectAvailablity(Course course,TimeSlot time){
         Subject available = null;
         Collections.shuffle(course.getSubjects());
         outer:
@@ -112,7 +113,7 @@ public class Schedule {
                 switch(type){
                     case 0: if(course.getSubjects().get(i).getLectureTime() > 0){
                                 //Finding Lecture for Room
-                                if(!teacherAvailability(course.getSubjects().get(i))){ continue outer; }
+                                if(!teacherAvailability(course.getSubjects().get(i),time)){ continue outer; }
                                 if(roomAvailability(course) == null){ type = 2; continue; }
                                 available = course.getSubjects().get(i);
                                 loop_condition = false;
@@ -120,7 +121,7 @@ public class Schedule {
                             break;
                     case 1: if(course.getSubjects().get(i).getTutorialTime() > 0){
                                 //Finding Lecture for Tutorial
-                                if(!teacherAvailability(course.getSubjects().get(i))){ continue outer; }
+                                if(!teacherAvailability(course.getSubjects().get(i),time)){ continue outer; }
                                 if(roomAvailability(course) == null){ type = 2;continue; }
                                 available = course.getSubjects().get(i);
                                 loop_condition = false;
@@ -128,7 +129,7 @@ public class Schedule {
                             break;
                     case 2: if(course.getSubjects().get(i).getPracticalTime() > 0){
                                 //Finding Lecture for Practical
-                                if(!teacherAvailability(course.getSubjects().get(i))){ continue outer; }
+                                if(!teacherAvailability(course.getSubjects().get(i),time)){ continue outer; }
                                 if(roomAvailability(course) == null){ type = -1; continue; }
                                 available = course.getSubjects().get(i);
                                 loop_condition = false;
@@ -145,8 +146,17 @@ public class Schedule {
     }
     
     private ArrayList<Teacher> teachers;
-    private boolean teacherAvailability(Subject subject){
-       return teachers.contains(subject.getTeacher());
+    private boolean teacherAvailability(Subject subject,TimeSlot time){
+        Teacher teacher = subject.getTeacher();
+        boolean condition = teachers.contains(teacher);
+        //Checking Time Slot Availability
+        if(condition){
+            // if not(Time Slot is within Teacher Availability) condition = false;  
+            if(!(teacher.getAvailableFrom() <= time.getSlotFrom() && teacher.getAvailableTo() >= time.getSlotTo())){
+                condition = false;
+            }
+        }
+        return condition;
     }
     
     private int total_time = 0;
