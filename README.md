@@ -13,7 +13,7 @@ Defined Time Table
 ## Approach
 There are two possible Approach for the same problem:
 1. **[Constraint Satisfaction Problem](https://github.com/krishna1401/Time-Table-Scheduling/tree/master/Constraint%20Satisfaction%20Algorithm)**: It is a process of finding a solution to a set of constraints imposed on the solution set that must be satisfied for a given problem.
-2. **[Genetic Algorithm](https://github.com/krishna1401/Time-Table-Scheduling/tree/master/Genetic%20Algorithm)**: It is based on the concept of *Darwin's theory of Evolution*, considering a random possible solutions and then continously evolving towards the tru solution by *crossover & mutation* of solutions.
+2. **Genetic Algorithm**: It is based on the concept of *Darwin's theory of Evolution*, considering a random possible solutions and then continously evolving towards the tru solution by *crossover & mutation* of solutions.
 
 ## How to Use?
 1. Open Constraint Satisfaction Problem project in any Java IDE
