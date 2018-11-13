@@ -27,3 +27,4 @@
 ## Other Functions
 1. **Class(...)**: Constructor to set Id, Course & TimeSlot for a Class
 2. **toString()**: Returns the formatted information as a single String
+3. **timeTableView()**: Returns the formatted text to be displayed in the Table.GUI

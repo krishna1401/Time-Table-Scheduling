@@ -19,3 +19,9 @@ There are two possible Approach for the same problem:
 1. Open Constraint Satisfaction Problem project in any Java IDE
 2. Execute the Main.java class
 3. Output files will be created in *Time Table* folder within the project folder
+<br/>
+**OR**
+<br/>
+1. Open Constraint Satisfaction Problem project in any Java IDE
+2. Execute the Table.java class
+3. Output files will be displayed in the JSwing Table in the GUI

@@ -49,4 +49,13 @@ public class Class {
         }
         return message;
     }
+    
+    public String timeTableView(){
+        String message;
+        if(subject == null)
+            message = "";
+        else
+            message = "" + teacher.getId() + "\n" + subject.getId() + "\n" + room.getId();
+        return message;
+    }
 }
