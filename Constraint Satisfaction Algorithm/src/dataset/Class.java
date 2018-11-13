@@ -5,8 +5,9 @@
  * 2. course = Course to be placed in class
  * 3. subject = Subject to be taught
  * 4. room = Room Assigned
- * 5. teacher = Teacher Assigned
- * 6. time = Time of Class
+ * 5. classType = Lecture/Tutorial/Lab
+ * 6. teacher = Teacher Assigned
+ * 7. time = Time of Class
  */
 package dataset;
 
@@ -15,6 +16,7 @@ public class Class {
     private Course course;
     private Subject subject;
     private Room room;
+    private String classType;
     private Teacher teacher;
     private TimeSlot time;
     
@@ -26,6 +28,7 @@ public class Class {
     
     public void setSubject(Subject subject){ this.subject = subject; }
     public void setRoom(Room room){ this.room = room; }
+    public void setClassType(String classType){this.classType = classType; }
     public void setTeacher(Teacher teacher){ this.teacher = teacher; }
     public void setNoClass(){
         subject = null;
@@ -37,6 +40,7 @@ public class Class {
     public Course getCourse(){ return course; }
     public Subject getSubject(){ return subject; }
     public Room getRoom(){ return room; }
+    public String getClassType(){ return classType; }
     public Teacher getTeacher(){ return teacher; }
     public TimeSlot getTimeSlot(){ return time; }
     @Override
@@ -49,13 +53,18 @@ public class Class {
         }
         return message;
     }
-    
     public String timeTableView(){
         String message;
-        if(subject == null)
+        if(subject == null){
             message = "";
-        else
-            message = "" + teacher.getId() + "\n" + subject.getId() + "\n" + room.getId();
+        }else{
+            message = "" + teacher.getId() + "\n" + subject.getId();
+            if(classType.equalsIgnoreCase("tutorial")){
+                message += "\n (Tut.)";
+            }else if(classType.equalsIgnoreCase("lab")){
+                message += "\n LAB";
+            }
+        }
         return message;
     }
 }

@@ -42,12 +42,15 @@ public class Schedule {
                     switch (type) {
                         case 2:
                             availableSubject.decrementPracticalTime();
+                            assignedClass.setClassType("LAB");
                             break;
                         case 1:
-                            availableSubject.decrementTutorialTime(); 
+                            availableSubject.decrementTutorialTime();
+                            assignedClass.setClassType("Tutorial");
                             break;
                         default:
                             availableSubject.decrementLectureTime();
+                            assignedClass.setClassType("Lecture");
                             break;
                     }
                     teachers.remove(availableSubject.getTeacher());
