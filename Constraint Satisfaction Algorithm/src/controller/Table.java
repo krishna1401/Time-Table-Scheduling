@@ -124,7 +124,7 @@ public class Table extends javax.swing.JFrame {
         object.timetables.forEach(table ->{
             if(table.getCourse().getName().equals(String.valueOf(jComboBox1.getSelectedItem()))){
                 jTable1.setDefaultRenderer(String.class, new MultiLineCellRenderer());
-                jTable1.setRowHeight(jTable1.getRowHeight()*3);
+                jTable1.setRowHeight(16*3);
                 
                 timetable = new String[5][9];
                 timetable[0][0] = "Monday";
